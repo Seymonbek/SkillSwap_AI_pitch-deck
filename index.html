@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap AI | Loyiha Taqdimoti</title>
+    <meta
+        name="description"
+        content="SkillSwap AI — bilim almashinuvi, freelance va sun'iy intellektni birlashtiradigan professional loyiha taqdimoti."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet"
+    >
+    <style>
+        :root {
+            --bg: #04131f;
+            --bg-deep: #071d2d;
+            --surface: rgba(9, 27, 42, 0.76);
+            --surface-strong: rgba(9, 31, 47, 0.92);
+            --surface-soft: rgba(14, 43, 64, 0.58);
+            --border: rgba(147, 209, 241, 0.16);
+            --border-strong: rgba(147, 209, 241, 0.28);
+            --text: #ecf7fb;
+            --muted: #97b3c2;
+            --accent: #57d3b5;
+            --accent-strong: #2fb28f;
+            --accent-alt: #ffbf69;
+            --accent-cool: #7cc2ff;
+            --danger: #ff8d78;
+            --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+            --radius-xl: 34px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --container: min(1240px, calc(100% - 40px));
+            --font-body: "Manrope", sans-serif;
+            --font-display: "Space Grotesk", sans-serif;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(87, 211, 181, 0.18), transparent 24%),
+                radial-gradient(circle at 88% 16%, rgba(124, 194, 255, 0.16), transparent 24%),
+                radial-gradient(circle at 50% 70%, rgba(255, 191, 105, 0.08), transparent 22%),
+                linear-gradient(180deg, #03111b 0%, #061927 48%, #04131f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::before {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
+        }
+
+        body::after {
+            background:
+                radial-gradient(circle at center, transparent 0%, rgba(4, 19, 31, 0.14) 45%, rgba(4, 19, 31, 0.72) 100%);
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 16px;
+            z-index: 60;
+            width: var(--container);
+            margin: 16px auto 0;
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 22px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(5, 20, 31, 0.74);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 44px;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(135deg, rgba(87, 211, 181, 0.28), rgba(124, 194, 255, 0.22));
+            border: 1px solid rgba(124, 194, 255, 0.22);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .brand-meta strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-meta span {
+            display: block;
+            font-size: 0.76rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .topbar-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .topbar-links a {
+            min-height: 44px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            color: var(--muted);
+            transition: 180ms var(--ease);
+        }
+
+        .topbar-links a:hover,
+        .topbar-links a:focus-visible {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+            outline: none;
+        }
+
+        .topbar-links .cta-link {
+            color: #05151d;
+            background: linear-gradient(135deg, var(--accent), #8af5dc);
+            font-weight: 800;
+        }
+
+        .side-rail {
+            position: fixed;
+            right: 26px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 16px 12px;
+            border-radius: 999px;
+            background: rgba(5, 19, 30, 0.76);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(22px);
+        }
+
+        .rail-btn {
+            width: 14px;
+            height: 14px;
+            border: 0;
+            cursor: pointer;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            transition: transform 180ms var(--ease), background 180ms var(--ease), box-shadow 180ms var(--ease);
+        }
+
+        .rail-btn[aria-current="true"] {
+            background: var(--accent);
+            transform: scale(1.35);
+            box-shadow: 0 0 0 6px rgba(87, 211, 181, 0.14);
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            padding: clamp(88px, 10vw, 124px) 0;
+            scroll-margin-top: 110px;
+        }
+
+        .container {
+            width: var(--container);
+            margin: 0 auto;
+        }
+
+        .section-shell {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(26px, 4vw, 38px);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            background:
+                linear-gradient(180deg, rgba(12, 34, 50, 0.9), rgba(5, 20, 31, 0.72));
+            box-shadow: var(--shadow);
+        }
+
+        .section-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top right, rgba(124, 194, 255, 0.12), transparent 30%),
+                radial-gradient(circle at bottom left, rgba(87, 211, 181, 0.14), transparent 28%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 36px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: currentColor;
+            box-shadow: 0 0 0 6px rgba(87, 211, 181, 0.12);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.8rem);
+            line-height: 1;
+            letter-spacing: -0.06em;
+            margin-top: 16px;
+        }
+
+        .section-copy {
+            max-width: 560px;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .hero-shell {
+            padding: clamp(28px, 4vw, 42px);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.88fr);
+            gap: clamp(24px, 4vw, 44px);
+            align-items: stretch;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-copy-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3.3rem, 8vw, 6.9rem);
+            line-height: 0.92;
+            letter-spacing: -0.08em;
+            max-width: 11ch;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-lede {
+            max-width: 56ch;
+            color: #d3e5ee;
+            font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button-primary,
+        .button-secondary {
+            min-height: 48px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 800;
+            transition: transform 180ms var(--ease), border-color 180ms var(--ease), background 180ms var(--ease);
+        }
+
+        .button-primary {
+            color: #05151d;
+            background: linear-gradient(135deg, var(--accent), #8af5dc);
+        }
+
+        .button-secondary {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .button-primary:hover,
+        .button-primary:focus-visible,
+        .button-secondary:hover,
+        .button-secondary:focus-visible {
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card,
+        .info-card,
+        .lane-card,
+        .feature-card,
+        .revenue-card,
+        .moat-card,
+        .risk-card,
+        .ask-bullet {
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .metric-card::before,
+        .info-card::before,
+        .lane-card::before,
+        .feature-card::before,
+        .revenue-card::before,
+        .moat-card::before,
+        .risk-card::before,
+        .ask-bullet::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 194, 255, 0.05), transparent 46%);
+            pointer-events: none;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1;
+            letter-spacing: -0.06em;
+        }
+
+        .metric-label {
+            margin-top: 8px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .hero-quote {
+            padding: 20px 22px;
+            border-left: 3px solid var(--accent-alt);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 191, 105, 0.08), rgba(255, 191, 105, 0.03));
+            color: #f7e6cb;
+            font-size: 1rem;
+        }
+
+        .hero-stage {
+            position: relative;
+            min-height: 620px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 22px;
+            border-radius: calc(var(--radius-xl) - 8px);
+            border: 1px solid var(--border);
+            background:
+                radial-gradient(circle at top left, rgba(87, 211, 181, 0.14), transparent 34%),
+                radial-gradient(circle at bottom right, rgba(124, 194, 255, 0.14), transparent 38%),
+                linear-gradient(180deg, rgba(6, 22, 34, 0.92), rgba(4, 15, 24, 0.92));
+            overflow: hidden;
+        }
+
+        .hero-stage::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+        }
+
+        .hero-stage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-stage-card {
+            padding: 16px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(8, 24, 37, 0.88);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+        }
+
+        .hero-stage-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .hero-stage-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .hero-stage-card.hero-stage-wide {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-stage-visual {
+            position: relative;
+            flex: 1;
+            min-height: 330px;
+        }
+
+        .stage-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 290px;
+            height: 290px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.14);
+        }
+
+        .stage-orbit::before,
+        .stage-orbit::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            inset: 26px;
+            border: 1px dashed rgba(124, 194, 255, 0.16);
+        }
+
+        .stage-orbit::after {
+            inset: 64px;
+            border-color: rgba(87, 211, 181, 0.18);
+        }
+
+        .center-chip {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            aspect-ratio: 1;
+            border-radius: 30px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 18px;
+            font-family: var(--font-display);
+            background: linear-gradient(135deg, rgba(87, 211, 181, 0.2), rgba(124, 194, 255, 0.22));
+            border: 1px solid rgba(124, 194, 255, 0.28);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.34);
+        }
+
+        .orbit-tag {
+            position: absolute;
+            min-height: 40px;
+            padding: 9px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(5, 20, 31, 0.86);
+            color: #d5ecf4;
+            font-size: 0.84rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .tag-cv {
+            top: 14%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tag-match {
+            top: 50%;
+            right: 6%;
+            transform: translateY(-50%);
+        }
+
+        .tag-token {
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tag-escrow {
+            top: 50%;
+            left: 6%;
+            transform: translateY(-50%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .solution-grid,
+        .market-grid,
+        .ask-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .revenue-grid,
+        .moat-grid,
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lane-card {
+            padding: 24px;
+        }
+
+        .lane-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .lane-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.04em;
+        }
+
+        .lane-pill {
+            min-height: 34px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #04131f;
+            background: var(--accent);
+        }
+
+        .lane-pill.alt {
+            background: var(--accent-alt);
+        }
+
+        .lane-copy {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .check-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .check-list li {
+            position: relative;
+            padding-left: 28px;
+            color: #dceaf0;
+        }
+
+        .check-list li::before {
+            content: "+";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            display: grid;
+            place-items: center;
+            border-radius: 999px;
+            color: #04131f;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), #9af7e2);
+        }
+
+        .journey-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .journey-step {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .journey-step span,
+        .info-label,
+        .bar-label,
+        .matrix-tag,
+        .timeline-year,
+        .mini-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .journey-step strong {
+            display: block;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+
+        .journey-step p {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card h3,
+        .revenue-card h3,
+        .moat-card h3,
+        .risk-card h3,
+        .ask-panel h3,
+        .market-panel h3,
+        .matrix-card h3,
+        .timeline-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.24rem;
+            letter-spacing: -0.04em;
+            margin: 14px 0 10px;
+        }
+
+        .feature-card p,
+        .revenue-card p,
+        .moat-card p,
+        .risk-card p,
+        .timeline-card p,
+        .ask-panel p,
+        .market-panel p,
+        .matrix-card p {
+            color: var(--muted);
+        }
+
+        .icon-chip {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            color: #04131f;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(87, 211, 181, 0.95), rgba(124, 194, 255, 0.95));
+        }
+
+        .info-band {
+            margin-top: 18px;
+            padding: 18px 22px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 191, 105, 0.18);
+            background: linear-gradient(180deg, rgba(255, 191, 105, 0.11), rgba(255, 191, 105, 0.04));
+            color: #f9ecd4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .market-panel,
+        .matrix-card,
+        .ask-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+        }
+
+        .bar-stack {
+            display: grid;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .market-bar {
+            display: grid;
+            gap: 8px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .bar-track {
+            height: 12px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, var(--accent), var(--accent-cool));
+            transition: width 1200ms var(--ease);
+        }
+
+        .pricing-sheet {
+            margin-top: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.6fr 0.75fr;
+            gap: 16px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .pricing-row:last-child {
+            border-bottom: 0;
+        }
+
+        .pricing-row.header {
+            background: rgba(255, 255, 255, 0.06);
+            font-size: 0.84rem;
+            color: #dceaf0;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .matrix-wrap {
+            overflow-x: auto;
+            margin-top: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 640px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: left;
+        }
+
+        th {
+            color: #dceaf0;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: var(--muted);
+        }
+
+        td strong {
+            color: var(--text);
+        }
+
+        .matrix-strong {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .matrix-mid {
+            color: var(--accent-alt);
+            font-weight: 800;
+        }
+
+        .matrix-low {
+            color: var(--danger);
+            font-weight: 800;
+        }
+
+        .timeline-card {
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-card::before {
+            content: "";
+            position: absolute;
+            left: 24px;
+            top: 58px;
+            bottom: 24px;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(87, 211, 181, 0.38), transparent);
+        }
+
+        .timeline-list {
+            display: grid;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -1px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(87, 211, 181, 0.12);
+        }
+
+        .timeline-item strong {
+            display: block;
+            font-size: 1rem;
+            margin: 6px 0;
+        }
+
+        .founder-strip {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .ask-panel.primary {
+            background:
+                radial-gradient(circle at top right, rgba(124, 194, 255, 0.14), transparent 28%),
+                linear-gradient(180deg, rgba(12, 36, 54, 0.9), rgba(7, 23, 35, 0.88));
+        }
+
+        .ask-number {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4.8rem);
+            line-height: 1;
+            letter-spacing: -0.08em;
+            margin: 18px 0 10px;
+        }
+
+        .ask-bullets {
+            display: grid;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .ask-bullet strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .closing-line {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: #dbeaf1;
+        }
+
+        footer {
+            width: var(--container);
+            margin: 0 auto;
+            padding: 28px 0 46px;
+            color: var(--muted);
+        }
+
+        .footer-shell {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 18px 22px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            background: rgba(5, 20, 31, 0.72);
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+        }
+
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1200px) {
+            .side-rail {
+                display: none;
+            }
+
+            .hero-grid,
+            .solution-grid,
+            .market-grid,
+            .roadmap-grid,
+            .ask-grid,
+            .feature-grid,
+            .problem-grid,
+            .revenue-grid,
+            .moat-grid,
+            .risk-grid,
+            .founder-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stage {
+                min-height: auto;
+            }
+
+            section {
+                min-height: auto;
+            }
+
+            .journey-strip {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 860px) {
+            .topbar {
+                top: 10px;
+                margin-top: 10px;
+            }
+
+            .topbar-inner,
+            .section-shell {
+                border-radius: 24px;
+            }
+
+            .topbar-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topbar-links {
+                justify-content: flex-start;
+            }
+
+            .hero-title {
+                max-width: none;
+                font-size: clamp(2.7rem, 12vw, 4.4rem);
+            }
+
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .journey-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stage {
+                min-height: auto;
+                padding: 18px;
+            }
+
+            .hero-stage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stage-visual {
+                min-height: 300px;
+            }
+
+            .stage-orbit {
+                width: 240px;
+                height: 240px;
+            }
+
+            .center-chip {
+                width: 124px;
+                border-radius: 26px;
+            }
+
+            .tag-cv,
+            .tag-token {
+                left: 50%;
+            }
+
+            .tag-match {
+                right: 10px;
+            }
+
+            .tag-escrow {
+                left: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            [data-reveal] {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="side-rail" aria-label="Section navigation">
+        <button class="rail-btn" data-target="hero" aria-label="Bosh sahifa" aria-current="true"></button>
+        <button class="rail-btn" data-target="problem" aria-label="Muammo"></button>
+        <button class="rail-btn" data-target="solution" aria-label="Yechim"></button>
+        <button class="rail-btn" data-target="engine" aria-label="Sun'iy intellekt qatlami"></button>
+        <button class="rail-btn" data-target="business" aria-label="Daromad modeli"></button>
+        <button class="rail-btn" data-target="moat" aria-label="Ustunlik"></button>
+        <button class="rail-btn" data-target="roadmap" aria-label="Yo'l xaritasi"></button>
+        <button class="rail-btn" data-target="ask" aria-label="Investitsiya"></button>
+    </aside>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="#hero" aria-label="SkillSwap AI bosh sahifasi">
+                <div class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" width="24" height="24" fill="none">
+                        <path d="M14 20.5L32 10l18 10.5v23L32 54 14 43.5v-23Z" stroke="#ECF7FB" stroke-width="2.5"/>
+                        <path d="M22 28.5c3.5-3 7-4.5 10-4.5s6.5 1.5 10 4.5" stroke="#04131F" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M22 37.5c3.5 3 7 4.5 10 4.5s6.5-1.5 10-4.5" stroke="#04131F" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="brand-meta">
+                    <strong>SkillSwap AI</strong>
+                    <span>Loyiha taqdimoti</span>
+                </div>
+            </a>
+
+            <nav class="topbar-links" aria-label="Asosiy navigatsiya">
+                <a href="#solution">Platforma</a>
+                <a href="#business">Monetizatsiya</a>
+                <a href="#roadmap">Yo'l xaritasi</a>
+                <a class="cta-link" href="#ask">Investitsiya</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="section-shell hero-shell">
+                    <div class="hero-grid">
+                        <div class="hero-copy-wrap" data-reveal>
+                            <div>
+                                <span class="eyebrow">Bilim almashinuvi + freelance + sun'iy intellekt</span>
+                                <h1 class="hero-title">Bilimni <span>o'sish</span> va daromadga aylantiradigan platforma.</h1>
+                                <p class="hero-lede">
+                                    SkillSwap AI pul yetmagani uchun o'qiy olmayotgan insonlarga bilim almashinuvi orqali
+                                    imkoniyat yaratadi. Shu jarayonda kuchaygan foydalanuvchini keyin freelance bozoriga
+                                    olib chiqib, real daromad topishiga yordam beradi.
+                                </p>
+                            </div>
+
+                            <div class="hero-actions">
+                                <a class="button-primary" href="#solution">Qanday ishlaydi</a>
+                                <a class="button-secondary" href="#ask">Investitsiya</a>
+                            </div>
+
+                            <div class="hero-metrics">
+                                <div class="metric-card" data-reveal>
+                                    <div class="metric-value" data-count="7" data-prefix="" data-suffix="M+">0</div>
+                                    <div class="metric-label">O'zbekistonda raqamli ko'nikma izlayotgan katta auditoriya</div>
+                                </div>
+                                <div class="metric-card" data-reveal>
+                                    <div class="metric-value" data-count="2" data-suffix="">0</div>
+                                    <div class="metric-label">Asosiy yo'nalish: barter va freelance</div>
+                                </div>
+                                <div class="metric-card" data-reveal>
+                                    <div class="metric-value" data-count="4" data-suffix="">0</div>
+                                    <div class="metric-label">Daromad manbai: token, komissiya, obuna va ustuvor joylashuv</div>
+                                </div>
+                            </div>
+
+                            <div class="hero-quote" data-reveal>
+                                "O'rganishdan boshlanadigan foydalanuvchi oxirida daromad topadigan ishonchli ishtirokchiga aylanadi."
+                            </div>
+                        </div>
+
+                        <div class="hero-stage" data-reveal>
+                            <div class="hero-stage-grid">
+                                <div class="hero-stage-card">
+                                    <strong>Barter moduli</strong>
+                                    <p>Foydalanuvchi bilimini almashadi va o'rgatgan vaqti uchun token oladi.</p>
+                                </div>
+                                <div class="hero-stage-card">
+                                    <strong>Freelance moduli</strong>
+                                    <p>Kuchaygan foydalanuvchi keyin pullik loyiha olib, bosqichli to'lov asosida ishlaydi.</p>
+                                </div>
+                            </div>
+
+                            <div class="hero-stage-visual">
+                                <div class="stage-orbit" aria-hidden="true"></div>
+                                <div class="center-chip">
+                                    <div>
+                                        <div class="mini-label">Asosiy yo'l</div>
+                                        <strong>O'rgan<br>O'rgat<br>Daromad top</strong>
+                                    </div>
+                                </div>
+                                <div class="orbit-tag tag-cv">CV tasdiqlash</div>
+                                <div class="orbit-tag tag-match">Moslashtirish</div>
+                                <div class="orbit-tag tag-token">Token tizimi</div>
+                                <div class="orbit-tag tag-escrow">To'lov himoyasi</div>
+                            </div>
+
+                            <div class="hero-stage-card hero-stage-wide">
+                                <strong>Sun'iy intellekt nazorati</strong>
+                                <p>CV tekshiruvi, foydalanuvchini moslashtirish va dars sifatini nazorat qilish bitta qatlamda ishlaydi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Muammo / Nega hozir</span>
+                            <h2 class="section-title">Muammo real, katta va ayni paytda juda dolzarb.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Bugun juda ko'p yoshlar nimanidir o'rganishni xohlaydi, lekin pul, sifat va ishonch masalasi
+                            sabab kutishda qolmoqda.
+                        </p>
+                    </div>
+
+                    <div class="problem-grid">
+                        <div class="info-card" data-reveal>
+                            <div class="info-label">Kurs narxi</div>
+                            <h3>$50-$300</h3>
+                            <p>Ko'pchilik uchun bu narx yangi ko'nikma o'rganish yo'lini yopib qo'yadi.</p>
+                        </div>
+                        <div class="info-card" data-reveal>
+                            <div class="info-label">Sifat muammosi</div>
+                            <h3>Ishonch past</h3>
+                            <p>Kim haqiqatan biladi, kim aldayapti, buni ko'rsatadigan aniq tizim yetarli emas.</p>
+                        </div>
+                        <div class="info-card" data-reveal>
+                            <div class="info-label">O'sish to'sig'i</div>
+                            <h3>Yo'l uzilgan</h3>
+                            <p>O'rganish bilan daromad topish bozori o'rtasida tabiiy va ishonchli ko'prik yo'q.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-band" data-reveal>
+                        SkillSwap AI muammoni boshqacha ko'radi: odamda qiziqish yo'q emas, kirish modeli noto'g'ri.
+                        Biz bilimning o'zini qiymatga aylantiramiz.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Yechim / Ikki modul</span>
+                            <h2 class="section-title">Bitta platforma foydalanuvchini o'rganishdan daromadgacha olib boradi.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Avval barter orqali kiradi, keyin tajriba va obro' yig'adi, so'ng freelance orqali pul ishlaydi.
+                        </p>
+                    </div>
+
+                    <div class="solution-grid">
+                        <article class="lane-card" data-reveal>
+                            <div class="lane-header">
+                                <h3>01. Barter bozori</h3>
+                                <span class="lane-pill">Kirish moduli</span>
+                            </div>
+                            <p class="lane-copy">
+                                Foydalanuvchi bilimini tasdiqlaydi, nimani o'rganmoqchi ekanini kiritadi va tizim unga mos
+                                o'rgatuvchini topib beradi.
+                            </p>
+                            <ul class="check-list">
+                                <li>CV va portfolio tekshiriladi.</li>
+                                <li>Mos sherik tavsiya qilinadi.</li>
+                                <li>Dars chat yoki video orqali o'tadi.</li>
+                                <li>Darsdan keyin token beriladi.</li>
+                            </ul>
+                        </article>
+
+                        <article class="lane-card" data-reveal>
+                            <div class="lane-header">
+                                <h3>02. Freelance bozori</h3>
+                                <span class="lane-pill alt">Daromad qatlami</span>
+                            </div>
+                            <p class="lane-copy">
+                                Kuchaygan foydalanuvchi keyin freelance qismida pullik xizmat ko'rsatadi. Bu yerda mijoz ham,
+                                freelancer ham himoyalangan bo'ladi.
+                            </p>
+                            <ul class="check-list">
+                                <li>Faol foydalanuvchi pullik bosqichga o'tadi.</li>
+                                <li>Mijoz pulni oldindan platformaga qo'yadi.</li>
+                                <li>Ish bosqichma-bosqich topshiriladi.</li>
+                                <li>Nizo chiqsa, platforma tekshiradi.</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="journey-strip">
+                        <div class="journey-step" data-reveal>
+                            <span>1-bosqich</span>
+                            <strong>Bilimini tasdiqlaydi</strong>
+                            <p>CV va portfolio orqali kiradi.</p>
+                        </div>
+                        <div class="journey-step" data-reveal>
+                            <span>2-bosqich</span>
+                            <strong>Mos sherik topiladi</strong>
+                            <p>Tizim unga eng mos insonni topadi.</p>
+                        </div>
+                        <div class="journey-step" data-reveal>
+                            <span>3-bosqich</span>
+                            <strong>Jonli dars o'tadi</strong>
+                            <p>Dars o'tadi va token yig'iladi.</p>
+                        </div>
+                        <div class="journey-step" data-reveal>
+                            <span>4-bosqich</span>
+                            <strong>Pullik ishlay boshlaydi</strong>
+                            <p>Keyin freelance bozorida daromad topadi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="engine">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Sun'iy intellekt qatlami</span>
+                            <h2 class="section-title">Sun'iy intellekt bu yerda asosiy nazorat va ishonch vositasi.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Sun'iy intellekt foydalanuvchini moslashtiradi, sifatni nazorat qiladi va platformani ishonchli qiladi.
+                        </p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <article class="feature-card" data-reveal>
+                            <div class="icon-chip">CV</div>
+                            <h3>CV va portfolio tahlili</h3>
+                            <p>Foydalanuvchi bilimini gap bilan emas, dalil bilan ko'rsatadi.</p>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="icon-chip">MX</div>
+                            <h3>Moslashtirish tahlili</h3>
+                            <p>Tizim eng mos o'rgatuvchi yoki sherikni topishga yordam beradi.</p>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="icon-chip">QA</div>
+                            <h3>Dars nazorati</h3>
+                            <p>Dars sifati kuzatiladi, sifatsiz faoliyat kamaytiriladi.</p>
+                        </article>
+                        <article class="feature-card" data-reveal>
+                            <div class="icon-chip">DS</div>
+                            <h3>Nizo va xavfsizlik nazorati</h3>
+                            <p>Nizo chiqsa, qaror chiqarish uchun kerakli dalillar tezroq ko'rib chiqiladi.</p>
+                        </article>
+                    </div>
+
+                    <div class="info-band" data-reveal>
+                        Natija oddiy: platforma ishonchliroq bo'ladi, aldamchilik kamayadi va foydalanuvchi tajribasi yaxshilanadi.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="business">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Biznes modeli</span>
+                            <h2 class="section-title">Daromad modeli bir nechta oqimdan iborat va bir-birini to'ldiradi.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Foydalanuvchi bepul kiradi, lekin platforma bir nechta qatlam orqali pul ishlaydi.
+                        </p>
+                    </div>
+
+                    <div class="revenue-grid">
+                        <article class="revenue-card" data-reveal>
+                            <div class="mini-label">01</div>
+                            <h3>Token foizi</h3>
+                            <p>Barter darslaridan token foizi ushlab qolinadi.</p>
+                        </article>
+                        <article class="revenue-card" data-reveal>
+                            <div class="mini-label">02</div>
+                            <h3>Freelance komissiyasi</h3>
+                            <p>Har pullik loyihadan platforma komissiya oladi.</p>
+                        </article>
+                        <article class="revenue-card" data-reveal>
+                            <div class="mini-label">03</div>
+                            <h3>Obuna va ustuvor joylashuv</h3>
+                            <p>Pro tariflar va ajratib ko'rsatiladigan profil/e'lonlar qo'shimcha daromad beradi.</p>
+                        </article>
+                    </div>
+
+                    <div class="market-grid" style="margin-top: 18px;">
+                        <div class="market-panel" data-reveal>
+                            <div class="mini-label">Tarif ko'rinishi</div>
+                            <h3>Bepul foydalanuvchi o'sgach, Pro tarifga o'tishi uchun aniq sabablar bor.</h3>
+                            <p>
+                                Pro tarif ko'proq vaqt, kamroq foiz va qidiruvda ustunlik beradi.
+                            </p>
+
+                            <div class="pricing-sheet">
+                                <div class="pricing-row header">
+                                    <div>Ko'rsatkich</div>
+                                    <div>Bepul</div>
+                                    <div>Pro</div>
+                                </div>
+                                <div class="pricing-row">
+                                    <div><strong>Barter token foizi</strong></div>
+                                    <div>15%</div>
+                                    <div>8% - 5%</div>
+                                </div>
+                                <div class="pricing-row">
+                                    <div><strong>Freelance komissiyasi</strong></div>
+                                    <div>12%</div>
+                                    <div>7% - 5%</div>
+                                </div>
+                                <div class="pricing-row">
+                                    <div><strong>Oylik obuna</strong></div>
+                                    <div>$0</div>
+                                    <div>$4.99 - $19.99</div>
+                                </div>
+                                <div class="pricing-row">
+                                    <div><strong>Kunlik vaqt limiti</strong></div>
+                                    <div>2 soat</div>
+                                    <div>3 - 4 soat</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="market-panel" data-reveal>
+                            <div class="mini-label">Bozor hajmi</div>
+                            <h3>Bozor katta, kirish nuqtasi esa juda aniq.</h3>
+                            <p>
+                                Dastlab O'zbekiston bozoridan boshlanadi, keyin mintaqaviy kengayish yo'li ochiladi.
+                            </p>
+
+                            <div class="bar-stack">
+                                <div class="market-bar">
+                                    <div class="bar-row">
+                                        <span class="bar-label">O'zbekiston ta'lim bozori</span>
+                                        <strong>$200M</strong>
+                                    </div>
+                                    <div class="bar-track"><div class="bar-fill" data-width="20"></div></div>
+                                </div>
+                                <div class="market-bar">
+                                    <div class="bar-row">
+                                        <span class="bar-label">MDH kengayish bozori</span>
+                                        <strong>$2B</strong>
+                                    </div>
+                                    <div class="bar-track"><div class="bar-fill" data-width="55"></div></div>
+                                </div>
+                                <div class="market-bar">
+                                    <div class="bar-row">
+                                        <span class="bar-label">Global skill almashinuvi bozori</span>
+                                        <strong>$50B</strong>
+                                    </div>
+                                    <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="moat">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Ustunlik / Raqobat</span>
+                            <h2 class="section-title">SkillSwap AI oddiy xizmat emas, yangi toifa yaratadigan mahsulot.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Eng katta ustunlik shundaki, bu yerda ta'lim, ishonch va daromad bitta tizimga birlashtirilgan.
+                        </p>
+                    </div>
+
+                    <div class="moat-grid">
+                        <article class="moat-card" data-reveal>
+                            <div class="mini-label">Moat 01</div>
+                            <h3>Yangi bozor toifasi</h3>
+                            <p>Bozorning o'zi hali to'liq egallanmagan va bu kuchli kirish imkonini beradi.</p>
+                        </article>
+                        <article class="moat-card" data-reveal>
+                            <div class="mini-label">Moat 02</div>
+                            <h3>Barterdan daromadgacha yo'l</h3>
+                            <p>Foydalanuvchi platformada o'sadi va keyin shu platformaning o'zida pul ishlay boshlaydi.</p>
+                        </article>
+                        <article class="moat-card" data-reveal>
+                            <div class="mini-label">Moat 03</div>
+                            <h3>Sun'iy intellekt orqali ishonch</h3>
+                            <p>CV tekshiruvi, moslashtirish va dars nazorati platformani ishonchli qiladi.</p>
+                        </article>
+                    </div>
+
+                    <div class="info-band" data-reveal>
+                        Oddiy kurs platformasi faqat o'rgatadi. Oddiy freelance platformasi faqat ish topadi.
+                        SkillSwap AI esa avval o'stiradi, keyin monetizatsiya qiladi.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Yo'l xaritasi / Kengayish</span>
+                            <h2 class="section-title">Yo'l xaritasi sodda: ishga tushirish, kuchayish, kengayish.</h2>
+                        </div>
+                        <p class="section-copy">
+                            Avval ishlaydigan bozor yaratiladi, keyin foydalanuvchi bazasi kengayadi, undan so'ng mintaqaviy o'sish boshlanadi.
+                        </p>
+                    </div>
+
+                    <div class="roadmap-grid">
+                        <article class="timeline-card" data-reveal>
+                            <div class="timeline-year">1-bosqich</div>
+                            <h3>Ishga tushirish</h3>
+                            <p>O'zbekistonda MVP, dastlabki foydalanuvchilar va asosiy barter jarayonini ishga tushirish.</p>
+                        </article>
+
+                        <article class="timeline-card" data-reveal>
+                            <div class="timeline-year">2-bosqich</div>
+                            <h3>Kuchayish</h3>
+                            <p>Freelance modulini kengaytirish, Pro tariflarni o'stirish va faol foydalanuvchi bazasini kattalashtirish.</p>
+                        </article>
+
+                        <article class="timeline-card" data-reveal>
+                            <div class="timeline-year">3-bosqich</div>
+                            <h3>Kengayish</h3>
+                            <p>Mintaqaviy bozorga chiqish va SkillSwap AI ni katta ta'lim-freelance infratuzilmasiga aylantirish.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ask">
+            <div class="container">
+                <div class="section-shell">
+                    <div class="section-header" data-reveal>
+                        <div>
+                            <span class="eyebrow">Investitsiya so'rovi</span>
+                            <h2 class="section-title">Endi bu g'oyani tez, to'g'ri va katta bozorga olib chiqish kerak.</h2>
+                        </div>
+                        <p class="section-copy">
+                            SkillSwap AI katta muammoni hal qiladi, foydalanuvchini o'stiradi va keyin shu foydalanuvchini monetizatsiya qiladi.
+                        </p>
+                    </div>
+
+                    <div class="ask-grid">
+                        <article class="ask-panel primary" data-reveal>
+                            <div class="mini-label">So'ralayotgan investitsiya</div>
+                            <div class="ask-number">$500K - $1M</div>
+                            <p>
+                                Bu mablag' mahsulotni mustahkamlash, foydalanuvchi bazasini yig'ish va bozorga tezroq chiqish uchun kerak.
+                            </p>
+                            <div class="closing-line">
+                                SkillSwap AI oddiy ta'lim platformasi emas. Bu o'rganishdan daromadgacha olib boradigan to'liq tizim.
+                            </div>
+                        </article>
+
+                        <article class="ask-panel" data-reveal>
+                            <div class="mini-label">Nima uchun hozir</div>
+                            <h3>Eng muhim uch sabab</h3>
+                            <p>Bozor katta, model noyob va monetizatsiya yo'li aniq.</p>
+
+                            <div class="ask-bullets">
+                                <div class="ask-bullet">
+                                    <strong>Katta muammo</strong>
+                                    <p>Pul yetmagani uchun o'qiy olmayotgan katta auditoriya bor.</p>
+                                </div>
+                                <div class="ask-bullet">
+                                    <strong>Noyob model</strong>
+                                    <p>Barter, freelance va sun'iy intellekt bir joyda ishlaydi.</p>
+                                </div>
+                                <div class="ask-bullet">
+                                    <strong>Aniq daromad</strong>
+                                    <p>Token, komissiya, obuna va ustuvor joylashuv orqali daromad olinadi.</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-shell">
+            <div>
+                <strong style="display:block; font-family: var(--font-display); font-size: 1.1rem;">SkillSwap AI</strong>
+                <span>Bilim sotilmaydi, almashiladi.</span>
+            </div>
+            <div>Bir faylli professional loyiha taqdimoti</div>
+        </div>
+    </footer>
+
+    <script>
+        const railButtons = Array.from(document.querySelectorAll(".rail-btn"));
+        const sections = Array.from(document.querySelectorAll("main section"));
+        const revealItems = Array.from(document.querySelectorAll("[data-reveal]"));
+        const counterItems = Array.from(document.querySelectorAll("[data-count]"));
+        const barItems = Array.from(document.querySelectorAll(".bar-fill"));
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        railButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const targetId = button.getAttribute("data-target");
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+                }
+            });
+        });
+
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const id = entry.target.id;
+                    railButtons.forEach((button) => {
+                        button.setAttribute("aria-current", button.getAttribute("data-target") === id ? "true" : "false");
+                    });
+                });
+            },
+            { threshold: 0.45 }
+        );
+
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+
+        revealItems.forEach((item) => {
+            if (prefersReducedMotion) {
+                item.classList.add("is-visible");
+            } else {
+                revealObserver.observe(item);
+            }
+        });
+
+        function animateCounter(node) {
+            const target = Number(node.dataset.count || "0");
+            const prefix = node.dataset.prefix || "";
+            const suffix = node.dataset.suffix || "";
+            const duration = 1400;
+            const start = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const value = Math.round(target * eased);
+                node.textContent = prefix + value + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    node.textContent = prefix + target + suffix;
+                }
+            }
+
+            requestAnimationFrame(tick);
+        }
+
+        const counterObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                });
+            },
+            { threshold: 0.55 }
+        );
+
+        counterItems.forEach((counter) => {
+            if (prefersReducedMotion) {
+                counter.textContent = (counter.dataset.prefix || "") + counter.dataset.count + (counter.dataset.suffix || "");
+            } else {
+                counterObserver.observe(counter);
+            }
+        });
+
+        const barObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.style.width = entry.target.dataset.width + "%";
+                    observer.unobserve(entry.target);
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        barItems.forEach((bar) => {
+            if (prefersReducedMotion) {
+                bar.style.width = bar.dataset.width + "%";
+            } else {
+                barObserver.observe(bar);
+            }
+        });
+    </script>
+</body>
+</html>
